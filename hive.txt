@@ -1,0 +1,18 @@
+cd $HADOOP_HOME
+cd sbin
+cd $HIVE_HOME
+cd conf
+hive
+
+
+create table sales(product string,price int,payment_type string,name string,city string,state string,country string)
+row format delimited
+fields terminated by ','
+stored in textfile ;
+
+load data local inpath 'path' into table sales;
+
+select country,sum(price) from sales group by country;
+
+
+select product,concat_ws(",",collect_list(name)) from sales group by product;

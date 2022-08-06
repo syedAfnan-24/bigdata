@@ -1,0 +1,18 @@
+cd $HADOOP_HOME
+cd sbin
+./start-all.sh
+jps
+
+hdfs dfs -mkdir -p ~ /input
+hdfs dfs -appendToFile - ~ /input/test.txt
+
+hadoop jar path ~/input ~/output
+hdfs dfs -cat ~/out/part*
+
+
+
+hdfs dfs -mkdir -p /give123
+hdfs dfs -copyFromLocal path /give123
+hadoop jar path /give123 /take123
+hdfs dfs -cat /take123/part*
+

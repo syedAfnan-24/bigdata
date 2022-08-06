@@ -1,0 +1,26 @@
+./start-all.sh
+jps
+
+hadoop fs -ls
+hadoop fs -mkdir prog2
+hadoop fs -touchz empty.txt
+hadoop fs -copyFromLocal f1.txt prog2/f1.txt
+hadoop fs -cat prog2/f1.txt
+hadoop fs -copuToLocal prog2/
+
+hadoop fs -moveFromLocal prog2 prog3
+
+hadoop fs -cp prog2/f1.txt prog3/f1_copy.txt
+
+hadoop fs -cat prog2/f1_copy.txt
+
+hadoop fs -mv prog3/f1_copy.txt prog2/
+
+hadoop fs -rmr prog3/
+
+hadoop fs -du prog2/
+
+hadoop fs -dus prog2/
+hadoop fs -stat prog2
+hadoop fs -appendToFile f1.txt f2.txt new.txt
+hadoop fs -cat new.txt
